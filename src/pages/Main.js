@@ -1,19 +1,26 @@
-import {Lightning} from 'wpe-lightning-sdk';
-import {List} from "../components"
+import { Lightning, Utils } from 'wpe-lightning-sdk';
+import { List } from "../components"
 
-export default class Main extends Lightning.Component{
+export default class Main extends Lightning.Component {
     static _template() {
         return {
-            scale:0.5,
+            scale: 0.5,
             Lists: {
                 x: 100, y: 560, zIndex: 3
             },
-            // @todo: add logo
+            ScaleBeforePos: {
+                scale: 2,
+                Logo: {
+                    src: Utils.asset("images/logo.png"),
+                    x: 50,
+                    y: 80,
+                }
+            }
         };
     }
 
     _init() {
-        this._index = 0; 
+        this._index = 0;
     }
 
     _focus() {
