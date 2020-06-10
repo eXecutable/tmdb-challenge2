@@ -4,18 +4,17 @@ import { List } from "../components"
 export default class Main extends Lightning.Component {
     static _template() {
         return {
-            scale: 0.5,
-            Lists: {
-                x: 100, y: 560, zIndex: 3
+            Logo: {
+                src: Utils.asset("images/logo.png"),
+                x: 50,
+                y: 80,
             },
             ScaleBeforePos: {
-                scale: 2,
-                Logo: {
-                    src: Utils.asset("images/logo.png"),
-                    x: 50,
-                    y: 80,
-                }
-            }
+                scale: 0.5,
+                Lists: {
+                    x: 100, y: 560, zIndex: 3
+                },
+            },
         };
     }
 
@@ -27,11 +26,11 @@ export default class Main extends Lightning.Component {
 
     }
 
-    /**
-     * @todo: add set movies() that will be called by the data-provider
-     * inside set movies create new List child and call it's movies setter
-     * and hand over the movies
-     */
+    set movies(__data) {
+        let list = new List(this.stage);
+        list.movies = __data.results;
+        this.tag('Lists').childList.add(list)
+    }
 
     _unfocus() {
         // @todo

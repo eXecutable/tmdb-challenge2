@@ -1,10 +1,11 @@
-import {Lightning} from "wpe-lightning-sdk";
+import { Lightning } from "wpe-lightning-sdk";
+import Item from '../item/Item';
 
 export default class List extends Lightning.Component {
     static _template() {
         return {
             Label: {
-                text: {text: '', fontFace: 'Magra'}
+                text: { text: '', fontFace: 'Magra' }
             },
             Movies: {
                 y: 75
@@ -39,23 +40,23 @@ export default class List extends Lightning.Component {
 
     set movies(v) {
         // we add an array of object with type: Item
-        // this.tag("Levels").children = v.map((el, idx)=>{
-        //     return {
-        //         type: Item
-        //     };
-        // });
+        this.tag("Movies").children = v.map((el, idx) => {
+            return {
+                type: Item,
+                item: el,
+            };
+        });
     }
 
     get items() {
-        return this.tag("Levels").children;
+        return this.tag("Movies").children;
     }
 
     get activeItem() {
-        // @todo: return selected item
+        return this.tag("Movies").children[this._index]
     }
 
     _getFocused() {
-        // @todo:
-        // return activeItem
+        return activeItem
     }
 }
