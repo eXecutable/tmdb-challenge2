@@ -1,7 +1,7 @@
 import { Lightning } from "wpe-lightning-sdk";
 import Item from '../item/Item';
 
-let _itemSpace = 200;
+const _itemSpace = 200;
 export default class List extends Lightning.Component {
     static _template() {
         return {
