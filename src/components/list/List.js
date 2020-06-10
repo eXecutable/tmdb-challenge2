@@ -1,6 +1,7 @@
 import { Lightning } from "wpe-lightning-sdk";
 import Item from '../item/Item';
 
+let _itemSpace = 200;
 export default class List extends Lightning.Component {
     static _template() {
         return {
@@ -18,32 +19,34 @@ export default class List extends Lightning.Component {
     }
 
     _handleLeft() {
-        // @todo: update index and call setIndex
+        if (this._index <= 0) return
+        this.setIndex(--this._index)
     }
 
     _handleRight() {
-        // @todo: update index and call setIndex
+        if (this._index >= this.movieData.length - 1) return
+        this.setIndex(++this._index)
     }
 
     setIndex(index) {
-        /**
-         * @todo:
-         * Implement working setIndex method
-         * that stores index and position movie component to focus
-         * on selected item
-         */
+        this.tag('Movies').patch({
+            x: index * -_itemSpace
+        })
+        this._index = index;
     }
 
     set label(v) {
         // @todo: update list title
     }
 
-    set movies(v) {
+    set movies(__data) {
+        this.movieData = __data;
         // we add an array of object with type: Item
-        this.tag("Movies").children = v.map((el, idx) => {
+        this.tag("Movies").children = this.movieData.map((el, idx) => {
             return {
                 type: Item,
                 item: el,
+                x: idx * _itemSpace
             };
         });
     }
@@ -57,6 +60,6 @@ export default class List extends Lightning.Component {
     }
 
     _getFocused() {
-        return activeItem
+        return this.activeItem
     }
 }

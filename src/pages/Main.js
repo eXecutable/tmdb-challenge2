@@ -9,11 +9,8 @@ export default class Main extends Lightning.Component {
                 x: 50,
                 y: 80,
             },
-            ScaleBeforePos: {
-                scale: 0.5,
-                Lists: {
-                    x: 100, y: 560, zIndex: 3
-                },
+            Lists: {
+                x: 100, y: 560, zIndex: 3
             },
         };
     }
@@ -37,7 +34,7 @@ export default class Main extends Lightning.Component {
     }
 
     _getFocused() {
-        // @todo: delegate focus to List child
+        return this.tag('Lists').childList.first
     }
 
 }

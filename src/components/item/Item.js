@@ -4,20 +4,28 @@ import { getImgUrl } from '../../lib/tools';
 export default class Level extends Lightning.Component {
     static _template() {
         return {
+            alpha: 0.5,
             Image: {
 
             },
             Title: {
                 y: 310, x: 20,
-                text: { fontFace: "Magra", fontSize: 24 }
+                text: { fontFace: "Magra", fontSize: 24, wordWrapWidth: 200 }
             }
         }
     }
 
-    /**
-     * @todo:
-     * - toggle alpha on focus / unfocus (transition)
-     */
+    _focus() {
+        this.patch({
+            alpha: 1
+        })
+    }
+
+    _unfocus() {
+        this.patch({
+            alpha: 0.5
+        })
+    }
 
     set item(v) {
         //v
