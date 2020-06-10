@@ -9,7 +9,7 @@ export default class Level extends Lightning.Component {
 
             },
             Title: {
-                y: 310, x: 20,
+                y: 310, x: 0,
                 text: { fontFace: "Magra", fontSize: 24, wordWrapWidth: 200 }
             }
         }
