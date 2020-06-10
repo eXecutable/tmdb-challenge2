@@ -35,8 +35,14 @@ export default class List extends Lightning.Component {
         this._index = index;
     }
 
-    set label(v) {
-        // @todo: update list title
+    $changeLabel(__itemData) {
+        this.label = __itemData.title;
+    }
+
+    set label(__title) {
+        this.patch({
+            Label: { text: { text: __title } }
+        })
     }
 
     set movies(__data) {

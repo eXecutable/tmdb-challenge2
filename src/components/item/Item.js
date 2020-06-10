@@ -19,6 +19,7 @@ export default class Level extends Lightning.Component {
         this.patch({
             alpha: 1
         })
+        this.fireAncestors('$changeLabel', this.data)
     }
 
     _unfocus() {
@@ -43,11 +44,12 @@ export default class Level extends Lightning.Component {
         // video: false
         // vote_average: 6
         // vote_count: 3655
+        this.data = v;
 
         this.patch({
             Title: {
                 text: {
-                    text: v.title,
+                    text: this.data.title,
                 },
             },
             Image: {
